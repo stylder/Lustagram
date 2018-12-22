@@ -4,6 +4,7 @@ import { Button, Text, View } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 
+
 const SignIn = (props) => {
   const {
     navigation,
@@ -40,7 +41,7 @@ const SignUp = (props) => {
     >
       <Text>Componente SignUP</Text>
       <Button
-        title="Go to SigIn"
+        title="Regresar"
         onPress={() => {
           navigation.navigate('SignIn');
         }}
@@ -49,26 +50,20 @@ const SignUp = (props) => {
   );
 };
 
-const RutasNoAutenticadas = createStackNavigator(
+const RutasNoAutenticadasCatalog = createStackNavigator(
   {
     SignIn: {
       screen: SignIn,
-      navigationOptions: {
-        header: null,
-      },
     },
     SignUp: {
       screen: SignUp,
-      navigationOptions: {
-        title: 'Sign Up',
-      },
     },
   },
   {
-
+    headerMode: 'none',
   },
 );
 
-const AppContainer = createAppContainer(RutasNoAutenticadas);
+const RutasNoAutenticadas = createAppContainer(RutasNoAutenticadasCatalog);
 
-export default AppContainer;
+export default RutasNoAutenticadas;

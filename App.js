@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import AppContainer from './componentes/NoAutenticados/RutasNoAutenticadas';
+import RutasNoAutenticadas from './componentes/NoAutenticados/RutasNoAutenticadas';
+import RutasAutenticadas from './componentes/Autenticados/RutasAutenticadas';
+
+console.disableYellowBox = ['Remote debuger'];
 
 export default class App extends React.Component {
 
@@ -9,7 +12,7 @@ export default class App extends React.Component {
     return (
 
       <View style={styles.container}>
-        <AppContainer />
+        <RutasAutenticadas />
       </View>
     );
   }
