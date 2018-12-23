@@ -1,13 +1,16 @@
 import { createAppContainer, createStackNavigator } from 'react-navigation';
-import Home from './Home';
+
+
 import Autor from './Profile';
 import Publicacion from './Publicacion';
 import Comentarios from './Comentarios';
+import Search from './Search';
 
-const HomeStack = createStackNavigator(
+
+const StackSearch = createStackNavigator(
   {
-    Home: {
-      screen: Home,
+    Search: {
+      screen: Search,
     },
     Autor: {
       screen: Autor,
@@ -17,24 +20,20 @@ const HomeStack = createStackNavigator(
     },
     Comentarios: {
       screen: Comentarios,
-      navigationOptions: {
-        tabBarVisible: false,
-      },
     },
   },
   {},
 );
 
 
-const RutasHome = createAppContainer(HomeStack);
-
+const RutasSearch = createAppContainer(StackSearch);
 /**
  *
  * Fix el bug de ocultar la tabNav con la versión 3.x
  *
  * @param navigation
  */
-RutasHome.navigationOptions = ({ navigation }) => {
+RutasSearch.navigationOptions = ({ navigation }) => {
   const { routeName } = navigation.state.routes[navigation.state.index];
 
   const navigationOptions = {};
@@ -45,4 +44,5 @@ RutasHome.navigationOptions = ({ navigation }) => {
   return navigationOptions;
 };
 
-export default RutasHome;
+
+export default RutasSearch;

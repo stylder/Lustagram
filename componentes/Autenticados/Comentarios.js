@@ -5,6 +5,7 @@ import {
 
 
 export default class Comentarios extends React.Component {
+
   render() {
     const { navigation } = this.props;
 

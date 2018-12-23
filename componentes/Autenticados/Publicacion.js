@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import {
+  Button, StyleSheet, Text, View,
+} from 'react-native';
 
 
 export default class Publicacion extends React.Component {
-
-
   render() {
     const { navigation } = this.props;
 
@@ -12,10 +12,17 @@ export default class Publicacion extends React.Component {
       <View style={styles.container}>
         <Text> Publicacion </Text>
         <Button
-          title={'Comentarios'}
+          title="Comentarios"
           onPress={() => {
             navigation.navigate('Comentarios');
-          }}/>
+          }}
+        />
+        <Button
+          title="Autor"
+          onPress={() => {
+            navigation.navigate('Autor');
+          }}
+        />
       </View>
     );
   }

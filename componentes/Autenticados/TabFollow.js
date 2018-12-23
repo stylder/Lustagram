@@ -1,8 +1,8 @@
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import Follow from './Follow';
 
 
-const StackFollow = createStackNavigator(
+const TabFollow = createMaterialTopTabNavigator(
   {
     Follow: {
       screen: Follow,
@@ -11,11 +11,12 @@ const StackFollow = createStackNavigator(
       screen: Follow,
     },
   },
-  {},
+  {
+  },
 );
 
 
-const RutasFollow = createAppContainer(StackFollow);
+const RutasFollow = createAppContainer(TabFollow);
 
 
 export default RutasFollow;
