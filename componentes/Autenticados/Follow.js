@@ -17,7 +17,7 @@ export default class Follow extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2c3e50',
+    backgroundColor: '#faf8ff',
     justifyContent: 'center',
     alignItems: 'center',
   },

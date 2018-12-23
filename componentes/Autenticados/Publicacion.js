@@ -1,22 +1,21 @@
 import React from 'react';
-import {
-  Button, StyleSheet, Text, View,
-} from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 
-export default class Profile extends React.Component {
+export default class Publicacion extends React.Component {
+
+
   render() {
     const { navigation } = this.props;
 
     return (
       <View style={styles.container}>
-        <Text> Profile </Text>
+        <Text> Publicacion </Text>
         <Button
-          title="Publicación"
+          title={'Comentarios'}
           onPress={() => {
-            navigation.navigate('Publicacion');
-          }}
-        />
+            navigation.navigate('Comentarios');
+          }}/>
       </View>
     );
   }
@@ -25,7 +24,7 @@ export default class Profile extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fc00af',
+    backgroundColor: '#fdff00',
     justifyContent: 'center',
     alignItems: 'center',
   },
