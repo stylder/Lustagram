@@ -1,18 +1,18 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Provider } from 'react-redux';
 import RutasNoAutenticadas from './componentes/NoAutenticados/RutasNoAutenticadas';
-import RutasAutenticadas from './componentes/Autenticados/RutasAutenticadas';
-
-console.disableYellowBox = ['Remote debuger'];
+// import RutasAutenticadas from './componentes/Autenticados/RutasAutenticadas';
+import Store from './store/Store';
 
 export default class App extends React.Component {
-
-
   render() {
     return (
 
       <View style={styles.container}>
-        <RutasAutenticadas />
+        <Provider store={Store}>
+          <RutasNoAutenticadas />
+        </Provider>
       </View>
     );
   }

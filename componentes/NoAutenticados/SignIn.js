@@ -4,17 +4,19 @@ import {
 } from 'react-native';
 
 
-export default class Comentarios extends React.Component {
+export default class SignIn extends React.Component {
   render() {
-    const { navigation } = this.props;
+    const {
+      navigation,
+    } = this.props;
 
     return (
       <View style={styles.container}>
-        <Text> Comentarios </Text>
+        <Text> Sign In </Text>
         <Button
-          title="Autor"
+          title="Sign Up"
           onPress={() => {
-            navigation.navigate('Autor');
+            navigation.navigate('SignUp');
           }}
         />
       </View>
@@ -25,7 +27,7 @@ export default class Comentarios extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fdff00',
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
   },

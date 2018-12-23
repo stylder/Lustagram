@@ -3,8 +3,6 @@ import { StyleSheet, View, Text } from 'react-native';
 
 
 export default class Add extends React.Component {
-
-
   render() {
     return (
       <View style={styles.container}>
