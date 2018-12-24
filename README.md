@@ -19,10 +19,10 @@ Versions of react-native
 
 ## Get Started
 ```sh
-$ git clone https://github.com/stylder/Lustagram.git
-$ cd Lustagram
-$ yarn install
-$ react-native run-android
+git clone https://github.com/stylder/Lustagram.git
+cd Lustagram
+yarn install
+expo start
 ```
 
 
