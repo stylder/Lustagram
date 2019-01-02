@@ -1,11 +1,16 @@
 import React from 'react';
 import {
-  Button, StyleSheet, Text, View, TextInput,
+  Button, StyleSheet, View,
 } from 'react-native';
 import { connect } from 'react-redux';
 import SignUpForm from './formas/SignUpForm';
 
 class SignUp extends React.Component {
+  registroDeUsuario = (valores) => {
+    console.log(valores);
+    this.props.registro(valores);
+  };
+
   render() {
     console.log('state', this.props.numero);
     const {
@@ -14,22 +19,11 @@ class SignUp extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text> Sign UP </Text>
-
-        <SignUpForm />
-
-
+        <SignUpForm registro={this.registroDeUsuario}/>
         <Button
           title="SignIn"
           onPress={() => {
             navigation.navigate('SignIn');
-          }}
-        />
-
-        <Button
-          title="Aumentar"
-          onPress={() => {
-            this.props.aumentar;
           }}
         />
       </View>
@@ -42,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: 16,
   },
 });
 
@@ -51,8 +45,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  aumentar: () => {
-    dispatch({ type: 'AUMENTAR_REDUCER_PRUEBA' });
+  registro: (values) => {
+    dispatch({
+      type: 'REGISTRO',
+      datos: values,
+    });
   },
 });
 

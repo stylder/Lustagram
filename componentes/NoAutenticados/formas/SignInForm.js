@@ -1,10 +1,12 @@
+// import liraries
 import React from 'react';
 import {
-  View, Button, TextInput, Text, StyleSheet,
+  View, Text, StyleSheet, TextInput, Button,
 } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
 
-const field = props => (
+
+const fieldNombre = props => (
   <View style={styles.texInput}>
     <TextInput
       placeholder={props.ph}
@@ -27,50 +29,38 @@ const field = props => (
   </View>
 );
 
+/* Funcion para validar los campos */
 const validate = (values) => {
   const errors = {};
 
-  if (!values.nombre) {
-    errors.nombre = 'requerido';
-  } else if (values.nombre.length < 5) {
-    errors.nombre = 'deben ser al menos 5 caracteres';
-  }
-
-
   if (!values.correo) {
-    errors.correo = 'requerido';
+    errors.correo = 'Requerido';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.correo)) {
-    errors.correo = 'correo invalido';
+    errors.correo = 'Correo invalido';
   }
 
   if (!values.password) {
-    errors.password = 'requerido';
+    errors.password = 'Requerido';
   } else if (values.password.length < 5) {
-    errors.password = 'debe ser al menos de 5 caracteres';
-  }
-
-  if (!values.confirmacion) {
-    errors.confirmacion = 'requerido';
-  } else if (values.password !== values.confirmacion) {
-    errors.confirmacion = 'el password debe concidor';
+    errors.password = 'Debe ser al menos 5 caracteres';
+  } else if (values.password.length > 15) {
+    errors.password = 'Debe ser menos de 15 caracteres';
   }
 
   return errors;
 };
 
-const SignUpForm = props => (
-  <View style={styles.textInput}>
-    <Field name="nombre" component={field} ph="Nombre" />
-    <Field name="correo" component={field} ph="correo@correo.com" />
-    <Field name="password" component={field} ph="*********" />
-    <Field name="confirmacion" component={field} ph="*********" />
+// create a component
+const SignInForm = props => (
+  <View>
+    <Field name="correo" component={fieldNombre} ph="correo@correo.com" />
+    <Field name="password" component={fieldNombre} ph="******" />
     <Button
-      title="Registrar"
-      onPress={props.handleSubmit(props.registro)}
+      title="SignIn"
+      onPress={props.handleSubmit(props.login)}
     />
-  </View>
-);
 
+  </View>);
 
 const styles = StyleSheet.create({
   texInput: {
@@ -86,6 +76,6 @@ const styles = StyleSheet.create({
 });
 
 export default reduxForm({
-  form: 'SignUpForm',
+  form: 'SignInForm',
   validate,
-})(SignUpForm);
+})(SignInForm);

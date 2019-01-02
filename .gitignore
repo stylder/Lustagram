@@ -1,3 +1,4 @@
+# file: ~/.gitignore_global
 node_modules/**/*
 .expo/*
 npm-debug.*
@@ -6,3 +7,5 @@ npm-debug.*
 *.key
 *.mobileprovision
 .idea
+.env
+config/config.js
