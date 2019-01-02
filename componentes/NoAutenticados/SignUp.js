@@ -5,6 +5,7 @@ import {
 import { connect } from 'react-redux';
 import SignUpForm from './formas/SignUpForm';
 import { accionRegistro } from '../../store/actions/acciones';
+import SelecionarImagen from '../SelecionarImagen';
 
 class SignUp extends React.Component {
   registroDeUsuario = (valores) => {
@@ -20,6 +21,7 @@ class SignUp extends React.Component {
 
     return (
       <View style={styles.container}>
+        <SelecionarImagen />
         <SignUpForm registro={this.registroDeUsuario} />
         <Button
           title="SignIn"
