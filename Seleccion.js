@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { autenticacion } from './store/servicios/Firebase';
-import Provider from 'react-redux/es/components/Provider';
-import Store from './store/Store';
 import RutasAutenticadas from './componentes/Autenticados/RutasAutenticadas';
 import RutasNoAutenticadas from './componentes/NoAutenticados/RutasNoAutenticadas';
 import { accionCerrarSesion, accionEstablecerSesion } from './store/actions/acciones';
 
 
 class Seleccion extends Component {
-
   componentDidMount() {
     this.props.autenticacion();
   }
@@ -18,9 +15,7 @@ class Seleccion extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Provider store={Store}>
-          <RutasNoAutenticadas />
-        </Provider>
+        {this.props.usuario ? <RutasAutenticadas /> : <RutasNoAutenticadas />}
       </View>
     );
   }
@@ -33,7 +28,7 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = state => ({
-  prop: state.prop,
+  usuario: state.reducerSesion,
 });
 
 const mapDispatchToProps = dispatch => ({
