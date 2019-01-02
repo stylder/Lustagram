@@ -4,11 +4,11 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import SignInForm from './formas/SignInForm';
+import { accionLogin } from '../../store/actions/acciones';
 
 class SignIn extends React.Component {
   loginDeUsuario = (values) => {
     this.props.login(values);
-    console.log(process.env.REACT_APP_API_KEY)
   };
 
   render() {
@@ -47,10 +47,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   login: (datos) => {
-    dispatch({
-      type: 'LOGIN',
-      datos,
-    });
+    dispatch(accionLogin(datos));
   },
 });
 

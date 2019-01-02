@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import SignUpForm from './formas/SignUpForm';
+import { accionRegistro } from '../../store/actions/acciones';
 
 class SignUp extends React.Component {
   registroDeUsuario = (valores) => {
@@ -19,7 +20,7 @@ class SignUp extends React.Component {
 
     return (
       <View style={styles.container}>
-        <SignUpForm registro={this.registroDeUsuario}/>
+        <SignUpForm registro={this.registroDeUsuario} />
         <Button
           title="SignIn"
           onPress={() => {
@@ -46,10 +47,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   registro: (values) => {
-    dispatch({
-      type: 'REGISTRO',
-      datos: values,
-    });
+    dispatch(accionRegistro(values));
   },
 });
 
