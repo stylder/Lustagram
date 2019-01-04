@@ -18,16 +18,28 @@ const field = props => (
       onBlur={props.input.onBlur}
     />
 
-    <View style={styles.linea} />
+    <View style={styles.linea}/>
 
     {/* Valida las propiedades de los campos del formulario */}
     {props.meta.touched && props.meta.error
-      && <Text style={styles.errors}>{props.meta.error}</Text>}
+    && <Text style={styles.errors}>{props.meta.error}</Text>}
 
   </View>
 );
 
-const validate = (values) => {
+const fieldImagen = props => (
+  <View>
+    <View style={styles.linea}>
+      {
+        props.meta.touched && props.meta.error
+        && <Text style={styles.errors}>{props.meta.error}</Text>
+      }
+    </View>
+  </View>
+);
+
+const validate = (values, props) => {
+  console.log('Ejecutando validaciones', values);
   const errors = {};
 
   if (!values.nombre) {
@@ -55,15 +67,20 @@ const validate = (values) => {
     errors.confirmacion = 'el password debe concidor';
   }
 
+  if (!props.imagen) {
+    errors.imagen = 'imagen es requerida';
+  }
+
   return errors;
 };
 
 const SignUpForm = props => (
   <View style={styles.container}>
-    <Field name="nombre" component={field} ph="Nombre" />
-    <Field name="correo" component={field} ph="correo@correo.com" />
-    <Field name="password" component={field} ph="*********" />
-    <Field name="confirmacion" component={field} ph="*********" />
+    <Field name="imagen" component={fieldImagen}/>
+    <Field name="nombre" component={field} ph="Nombre"/>
+    <Field name="correo" component={field} ph="correo@correo.com"/>
+    <Field name="password" component={field} ph="*********"/>
+    <Field name="confirmacion" component={field} ph="*********"/>
     <Button
       title="Registrar"
       onPress={props.handleSubmit(props.registro)}

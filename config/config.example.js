@@ -6,4 +6,6 @@ export default {
   storageBucket: '',
   messagingSenderId: '',
 
+  cloudinary_name: '',
+  cloudinary_preset: '',
 };

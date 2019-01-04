@@ -4,14 +4,6 @@ import createSagaMiddleware from 'redux-saga';
 import funcionPrimaria from './sagas/sagas';
 import CONSTANTES from './constantes/constantes';
 
-const reducerPrueba = (state = [0], action) => {
-  switch (action.type) {
-    case 'REGISTRO':
-      return [...state, 1];
-    default:
-      return state;
-  }
-};
 
 const reducerSesion = (state = null, action) => {
   switch (action.type) {
@@ -24,13 +16,23 @@ const reducerSesion = (state = null, action) => {
   }
 };
 
+const reducerImagenSignUp = (state = { image: null }, action) => {
+  switch (action.type) {
+    case CONSTANTES.CARGAR_IMAGEN_SIGNUP:
+      return { imagen: action.imagen };
+    case CONSTANTES.LIMPIAR_IMAGEN_SIGNUP:
+      return { imagen: null };
+    default:
+      return state;
+  }
+};
 
 const sagaMiddleware = createSagaMiddleware();
 
 
 const reducers = combineReducers({
   reducerSesion,
-  reducerPrueba,
+  reducerImagenSignUp,
   form,
 });
 
