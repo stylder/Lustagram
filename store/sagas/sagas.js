@@ -20,6 +20,17 @@ const registroEnBaseDeDatos = ({
     fotoURL,
   });
 
+const escribirFirebase = ({ width, height, secure_url }, texto = '') => baseDatos
+  .ref('publicaciones/')
+  .push({
+    width,
+    height,
+    secure_url,
+    texto,
+  })
+  .then(response => response);
+
+
 const registroFotoCloudinary = ({ imagen }) => {
   console.log(imagen);
   const { uri } = imagen;
@@ -45,11 +56,7 @@ function* sagaRegistro(values) {
   try {
     // cargar foto
     const imagen = yield select(state => state.reducerImagenSignUp);
-    console.log(imagen);
     const urlFoto = yield call(registroFotoCloudinary, imagen);
-    console.log('URL FOTO', urlFoto);
-
-    console.log(urlFoto.secure_url);
     const fotoURL = urlFoto.secure_url;
     const registro = yield call(registroEnFirebase, values.datos);
     const { email, uid } = registro;
@@ -76,8 +83,23 @@ function* sagaLogin(values) {
   }
 }
 
+function* sagaSubirPublicacion({ values }) {
+  try {
+    const imagen = yield select(state => state.reducerImagenPublicacion);
+    const resultadoImagen = yield call(registroFotoCloudinary, imagen);
+    console.log(resultadoImagen);
+    const { width, height, secure_url } = resultadoImagen;
+    const parametrosImagen = { width, height, secure_url };
+    const escribirEnFirebase = yield call(escribirFirebase, parametrosImagen, values.texto);
+    console.log(escribirEnFirebase);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 export default function* functionPrimaria() {
   yield takeEvery(CONSTANTES.REGISTRO, sagaRegistro);
   yield takeEvery(CONSTANTES.LOGIN, sagaLogin);
+  yield takeEvery(CONSTANTES.SUBIR_PUBLICACION, sagaSubirPublicacion);
 }

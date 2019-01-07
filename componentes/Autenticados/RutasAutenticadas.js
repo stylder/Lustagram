@@ -1,9 +1,9 @@
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import StackHome from './StackHome';
 import StackSearch from './StackSearch';
-import Add from './Add';
 import StackFollow from './StackFollow';
 import Profile from './Profile';
+import StackAdd from './StackAdd';
 
 
 const RutasAutenticadasCatalog = createBottomTabNavigator(
@@ -15,7 +15,7 @@ const RutasAutenticadasCatalog = createBottomTabNavigator(
       screen: StackSearch,
     },
     Add: {
-      screen: Add,
+      screen: StackAdd,
     },
     Follow: {
       screen: StackFollow,

@@ -33,7 +33,7 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#afff37',
+    backgroundColor: '#f9f9f9',
     justifyContent: 'center',
     alignItems: 'center',
   },

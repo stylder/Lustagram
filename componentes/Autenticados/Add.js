@@ -1,12 +1,27 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet, View, Text, Button,
+} from 'react-native';
 
 
 export default class Add extends React.Component {
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
+        <Button
+          title="Seleccionar de galeria"
+          onPress={() => {
+            navigation.navigate('Seleccion');
+          }}
+        />
         <Text> Add </Text>
+        <Button
+          title="Tomar foto"
+          onPress={() => {
+            navigation.navigate('Seleccion');
+          }}
+        />
       </View>
     );
   }
@@ -15,7 +30,7 @@ export default class Add extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f1f1ff',
+    backgroundColor: '#f9f9f9',
     justifyContent: 'center',
     alignItems: 'center',
   },
