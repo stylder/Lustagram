@@ -1,19 +1,41 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Button,
+  StyleSheet, View, Alert,
 } from 'react-native';
 import { blur } from 'redux-form';
 import { connect } from 'react-redux';
 import SeleccionarImagen from '../SelecionarImagen';
 import {
-  accionCargarImagenPublicacion, accionLimpiarImagenPublicacion,
-  accionSubirPublicacion
+  accionCargarImagenPublicacion, accionLimpiarImagenPublicacion, accionLimpiarSubirPublicacion,
+  accionSubirPublicacion,
 } from '../../store/actions/acciones';
 import SeleccionarGaleriaForm from './formas/SeleccionarGaleriaForm';
 
 
 // create a component
 class SeleccionarGaleria extends Component {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.estadoSubirPublicacion !== nextProps.estadoSubirPublicacion) {
+      switch (nextProps.estadoSubirPublicacion) {
+        case 'EXITO':
+          Alert.alert('Éxito',
+            'Publicación realizada correctamente',
+            [{
+              text: 'OK',
+              onPress: () => {
+                this.props.limpiarPublicacion();
+                this.props.navigation.goBack();
+              },
+            }]);
+          break;
+        case 'ERROR':
+          console.log('ERROR');
+          break;
+        default:
+          break;
+      }
+    }
+  }
 
   componentWillUnmount() {
     this.props.limpiarImagen();
@@ -59,6 +81,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   imagen: state.reducerImagenPublicacion,
+  estadoSubirPublicacion: state.reducerExitoSubirPublicacion,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -71,6 +94,9 @@ const mapDispatchToProps = dispatch => ({
   },
   limpiarImagen: () => {
     dispatch(accionLimpiarImagenPublicacion());
+  },
+  limpiarPublicacion: () => {
+    dispatch(accionLimpiarSubirPublicacion());
   },
 });
 

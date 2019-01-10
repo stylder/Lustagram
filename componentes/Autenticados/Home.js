@@ -1,30 +1,36 @@
 import React from 'react';
 import {
-  Button, StyleSheet, Text, View,
+  Text, StyleSheet, FlatList, View, Image, Dimensions,
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import { accionDescargarPublicaciones } from '../../store/actions/acciones';
+import Publicacion from './Publicacion';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
+  componentDidMount() {
+    this.props.descargarPublicaciones();
+  }
+
   render() {
+    console.log('home publicaciones', this.props.publicaciones);
     const {
-      navigation,
+      navigation, autores,
     } = this.props;
 
     return (
       <View style={styles.container}>
-        <Button
-          title="Autor"
-          onPress={() => {
-            navigation.navigate('Autor');
-          }}
+
+        <FlatList
+          data={this.props.publicaciones}
+          ItemSeparatorComponent={() => (
+            <View style={styles.separador} />
+          )}
+          renderItem={({ item, index }) => <Publicacion item={item} autor={autores[index]} />
+          }
         />
-        <Button
-          title="Comentarios"
-          onPress={() => {
-            navigation.navigate('Comentarios');
-          }}
-        />
-        <Text> Home </Text>
+
+
       </View>
     );
   }
@@ -37,4 +43,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  separador: {
+    borderWidth: 1,
+    borderColor: '#C0C0C0',
+  },
 });
+
+const mapStateToProps = state => ({
+  publicaciones: state.reducerPublicacionesDescargadas,
+  autores: state.reducerAutoresDescargados,
+});
+const mapDispatchToProps = dispatch => ({
+  descargarPublicaciones: () => {
+    dispatch(accionDescargarPublicaciones());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
